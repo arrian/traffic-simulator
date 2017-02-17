@@ -1,0 +1,22 @@
+{
+  "name": "traffic-simulator-client",
+  "version": "1.0.0",
+  "description": "Traffic simulator web app",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arrian/traffic-simulator.git"
+  },
+  "keywords": [
+    "traffic"
+  ],
+  "author": "Arrian Purcell <arrian.purcell@gmail.com> (arrian.github.io)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arrian/traffic-simulator/issues"
+  },
+  "homepage": "https://github.com/arrian/traffic-simulator#readme"
+}
