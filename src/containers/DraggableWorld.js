@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { mouseDown, mouseUp, mouseMove } from '../actions'
+import { updateViewport } from '../actions'
 import World from '../components/World'
 
 const mapStateToProps = (state) => ({
@@ -8,9 +8,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = ({
-  onMouseDown: mouseDown,
-  onMouseUp: mouseUp,
-  onMouseMove: (e) => mouseMove({ x: e.clientX, y: e.clientY })
+  onUpdateViewport: updateViewport
 })
 
 const DraggableWorld = connect(

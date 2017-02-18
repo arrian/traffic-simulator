@@ -1,8 +1,12 @@
 import React, { PropTypes } from 'react'
 
-const World = ({ viewport, world, onClick, onMouseMove, onMouseDown, onMouseUp }) => (
-  <svg onClick={onClick} onMouseMove={onMouseMove} onMouseDown={onMouseDown} onMouseUp={onMouseUp} style={{ backgroundColor: 'black', width: '100%', height: '100vh' }}>
-    <circle cx={50} cy={50} r={10} fill="red" />
+function onMouseMove(e, onUpdateViewport) {
+  console.log(e);
+}
+
+const World = ({ viewport, world, onClick, onUpdateViewport }) => (
+  <svg preserveAspectRatio="xMidYMid meet" viewBox="54.090 12.22 0.05 0.05" onClick={onClick} onMouseMove={(e) => onMouseMove(e, onUpdateViewport)} style={{ backgroundColor: 'black', width: '100%', height: '100vh' }}>
+    {world.nodes.map(node => <circle key={node.id} cx={node.lat} cy={node.lon} r={0.0003} fill="red" />)}
   </svg>
 )
 
@@ -10,9 +14,7 @@ World.propTypes = {
   viewport: PropTypes.object.isRequired,
   world: PropTypes.object.isRequired,
   onClick: PropTypes.func,
-  onMouseMove: PropTypes.func.isRequired,
-  onMouseDown: PropTypes.func.isRequired,
-  onMouseUp: PropTypes.func.isRequired
+  onUpdateViewport: PropTypes.func.isRequired
 }
 
 export default World

@@ -1,13 +1,10 @@
 
-export const mouseMove = (position) => ({
-	type: 'MOUSE_MOVE',
+export const updateViewport = (position) => ({
+	type: 'UPDATE_VIEWPORT',
 	position
-});
+}); 
 
-export const mouseDown = () => ({
-	type: 'MOUSE_DOWN'
-});
-
-export const mouseUp = () => ({
-	type: 'MOUSE_UP'
+export const updateWorld = (world) => ({
+	type: 'UPDATE_WORLD',
+	world
 });
