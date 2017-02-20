@@ -4,6 +4,8 @@ const world = (state = { nodes: [], ways: [], vehicles: [], relations: [] }, act
   switch(action.type) {
     case 'UPDATE_WORLD':
       return action.world;
+    case 'UPDATE_VEHICLES':
+      return Object.assign({}, state, { vehicles: action.vehicles });
     default:
       return state;
   }
