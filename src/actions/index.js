@@ -6,6 +6,11 @@ export const updateViewport = (position, width, height) => ({
 	height
 });
 
+export const zoom = (delta) => ({
+	type: 'ZOOM',
+	delta
+});
+
 export const updateWorld = (world) => ({
 	type: 'UPDATE_WORLD',
 	world

@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react'
-import { isRoad, isResidentialRoad, isTertiaryRoad, isBuilding, isFootpath, lonToX, latToY } from '../osm'
+import { isRoad, isResidentialRoad, isTertiaryRoad, isMotorwayRoad, isBuilding, isFootpath, lonToX, latToY } from '../osm'
 
 function onMouseMove(e, onUpdateViewport) {
   e.persist();
   if(e.buttons === 1) {
-    onUpdateViewport({ x: e.clientX, y: e.clientY }, 800, 600);
+    onUpdateViewport({ x: e.clientX, y: e.clientY }, 100, 100);
     console.log('down');
   }
   console.log(e);
@@ -30,6 +30,7 @@ function drawWay(way, worldNodes) {
   var stroke;
   if(isResidentialRoad(way)) stroke = '#f0ede5';
   else if(isTertiaryRoad(way)) stroke = '#FBBC05';
+  else if(isMotorwayRoad(way)) stroke = '#CC3333';
   else stroke = 'none';
 
   return <polyline key={way.id} points={points} stroke={stroke} strokeWidth={width} fill={fill} strokeLinejoin="round" />;
@@ -43,8 +44,8 @@ function drawVehicles(vehicles) {
   return vehicles.map(vehicle => <circle key={vehicle.id} cx={lonToX(vehicle.lon)} cy={latToY(vehicle.lat)} r={0.5} fill="black" />);
 }
 
-const World = ({ viewport, world, onClick, onUpdateViewport }) => (
-  <svg vectorEffect="non-scaling-stroke" preserveAspectRatio="xMidYMid meet" viewBox={`${lonToX(149.0458200)} ${latToY(-35.3838500)} 100 100`} onClick={onClick} onMouseMove={(e) => onMouseMove(e, onUpdateViewport)} style={{ backgroundColor: '#487742', width: '100%', height: '100vh' }}>
+const World = ({ viewport, world, onClick, onWheel, onUpdateViewport }) => (
+  <svg vectorEffect="non-scaling-stroke" preserveAspectRatio="xMidYMid meet" viewBox={`${lonToX(viewport.lon)} ${latToY(viewport.lat)} ${viewport.width} ${viewport.height}`} onClick={onClick} onMouseMove={(e) => onMouseMove(e, onUpdateViewport)} onWheel={onWheel} style={{ backgroundColor: '#487742', width: '100%', height: '100vh' }}>
     {drawWays(world.ways, world.nodes)}
     {drawVehicles(world.vehicles)}
   </svg>
@@ -56,6 +57,7 @@ World.propTypes = {
   viewport: PropTypes.object.isRequired,
   world: PropTypes.object.isRequired,
   onClick: PropTypes.func,
+  onWheel: PropTypes.func,
   onUpdateViewport: PropTypes.func.isRequired
 }
 

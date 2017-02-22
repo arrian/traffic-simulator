@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { updateViewport } from '../actions'
+import { updateViewport, zoom } from '../actions'
 import World from '../components/World'
 
 const mapStateToProps = (state) => ({
@@ -8,7 +8,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = ({
-  onUpdateViewport: updateViewport
+  onUpdateViewport: updateViewport,
+  onWheel: zoom
 })
 
 const DraggableWorld = connect(

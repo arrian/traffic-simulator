@@ -1,6 +1,10 @@
 
 export function isTertiaryRoad(way) {
-	return way.tag.filter(tag => tag.v === 'tertiary').length >= 1;
+	return way.tag.filter(tag => tag.v === 'tertiary' || tag.v === 'secondary').length >= 1;
+}
+
+export function isMotorwayRoad(way) {
+	return way.tag.filter(tag => tag.v === 'motorway' || tag.v === 'primary').length >= 1;
 }
 
 export function isResidentialRoad(way) {
@@ -8,7 +12,7 @@ export function isResidentialRoad(way) {
 }
 
 export function isRoad(way) {
-	return isResidentialRoad(way) || isTertiaryRoad(way);
+	return isResidentialRoad(way) || isTertiaryRoad(way) || isMotorwayRoad(way);
 }
 
 export function isBuilding(way) {
